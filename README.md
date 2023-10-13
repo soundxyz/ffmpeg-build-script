@@ -577,7 +577,7 @@ $ ninja -C build install
 
 building opencore - version 0.1.6
 =======================
-Downloading https://netactuate.dl.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.6.tar.gz as opencore-amr-0.1.6.tar.gz
+Downloading https://cfhcable.dl.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.6.tar.gz as opencore-amr-0.1.6.tar.gz
 ... Done
 Extracted opencore-amr-0.1.6.tar.gz
 $ ./configure --prefix=/app/workspace --disable-shared --enable-static
