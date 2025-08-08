@@ -623,6 +623,20 @@ if $NONFREE_AND_GPL; then
 fi
 
 ##
+## Image Codecs
+##
+
+if build "libwebp" "1.6.0"; then
+  download "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.6.0.tar.gz"
+  execute ./configure --prefix="${WORKSPACE}" --disable-shared --enable-static --enable-libwebpmux --enable-libwebpdemux
+  execute make -j $MJOBS
+  execute make install
+  
+  build_done "libwebp" "1.6.0"
+fi
+CONFIGURE_OPTIONS+=("--enable-libwebp")
+
+##
 ## FFmpeg
 ##
 
