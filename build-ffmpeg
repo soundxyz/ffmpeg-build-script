@@ -639,7 +639,7 @@ CONFIGURE_OPTIONS+=("--enable-libwebp")
 # dependency of libheif 
 if build "libde265" "1.0.16"; then
   download "https://github.com/strukturag/libde265/releases/download/v1.0.16/libde265-1.0.16.tar.gz"
-  execute ./configure --prefix="${WORKSPACE}" --disable-shared --enable-static --disable-dec265 --disable-sherlock265
+  execute ./configure --prefix="${WORKSPACE}" --disable-shared --enable-static --disable-dec265 --disable-sherlock265 CFLAGS="-fPIC" CXXFLAGS="-fPIC"
   execute make -j $MJOBS
   execute make install
   build_done "libde265" "1.0.16"
