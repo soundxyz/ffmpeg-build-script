@@ -636,6 +636,28 @@ if build "libwebp" "1.6.0"; then
 fi
 CONFIGURE_OPTIONS+=("--enable-libwebp")
 
+# dependency of libheif 
+if build "libde265" "1.0.16"; then
+  download "https://github.com/strukturag/libde265/releases/download/v1.0.16/libde265-1.0.16.tar.gz"
+  execute ./configure --prefix="${WORKSPACE}" --disable-shared --enable-static --disable-dec265 --disable-sherlock265
+  execute make -j $MJOBS
+  execute make install
+  build_done "libde265" "1.0.16"
+fi
+# CONFIGURE_OPTIONS+=("--enable-libde265")
+
+if build "libheif" "1.20.2"; then
+  download "https://github.com/strukturag/libheif/releases/download/v1.20.2/libheif-1.20.2.tar.gz"
+  execute cmake -DCMAKE_INSTALL_PREFIX="${WORKSPACE}" -DENABLE_SHARED=OFF -DBUILD_SHARED_LIBS=OFF -DENABLE_PLUGINS=OFF -DENABLE_EXAMPLES=OFF -DENABLE_TESTS=OFF -DENABLE_UTILS=OFF -DENABLE_GO=OFF .
+  execute make -j $MJOBS
+  execute make install
+  build_done "libheif" "1.20.2"
+fi
+# CONFIGURE_OPTIONS+=("--enable-libheif")  # Remove this line - FFmpeg doesn't have this option
+
+# Add libheif to the extra libraries for linking
+EXTRALIBS+=" -lheif -lde265"
+
 ##
 ## FFmpeg
 ##
